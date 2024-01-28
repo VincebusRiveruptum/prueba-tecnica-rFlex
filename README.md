@@ -15,3 +15,4 @@ Instrucciónes de instalación
 - Correr npm run dev para inicializar front-end
 - Correr en la dirección localhost con el puerto indicado por vite.js
 
+Dentro del repositorio está el archivo .ENV en caso de que se requiera
