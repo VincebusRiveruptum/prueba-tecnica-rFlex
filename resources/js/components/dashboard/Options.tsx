@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import { useEffect } from 'react';
+import { setDateRange } from '../../store/dateRange/dateRangeSlice';
 
 const months = [
     { id:"1", month:"Enero"},
@@ -27,8 +28,8 @@ const months = [
 ];
 
 const years = [
-    { id:"1", year:"2023" },
-    { id:"2", year:"2024" }
+    {  year:"2023" },
+    {  year:"2024" }
 ];
 
 export default function Options() {  
@@ -64,7 +65,37 @@ export default function Options() {
 
   // Range selection
   const handleRangeChange = (event: SelectChangeEvent) => {
-    console.log(event.target);      
+    console.log(event.target.name);
+    var dateArray;
+    var modifiedDateString;
+
+    switch(event.target.name){
+      case 'monthStart':
+          dateArray = dateRange.start.split('-');
+          dateArray[1] = event.target.value;
+          modifiedDateString = dateArray.join('-');
+          console.log(modifiedDateString);
+          //dispatcher(setDateRange(modifiedDateString));
+        break;
+      case 'yearStart':
+        dateArray = dateRange.start.split('-');
+        dateArray[0] = event.target.value;
+        modifiedDateString = dateArray.join('-');
+        console.log(modifiedDateString);
+        break;
+      case 'monthEnd':
+        dateArray = dateRange.end.split('-');
+        dateArray[1] = event.target.value;
+        modifiedDateString = dateArray.join('-');
+        console.log(modifiedDateString);
+        break;
+      case 'yearEnd':
+        dateArray = dateRange.end.split('-');
+        dateArray[0] = event.target.value;
+        modifiedDateString = dateArray.join('-');
+        console.log(modifiedDateString);
+        break
+    }
   };
 
   // Fetching at start
@@ -87,9 +118,12 @@ export default function Options() {
                     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                     <InputLabel id="select-start-month">Mes</InputLabel>
                         <Select
-                            labelId="demo-select-small-label"
-                            id="demo-select-small"
-                            value={}
+                            labelId="select-start-month-label"
+                            id="select-start-month"
+                            value={ 
+                            
+                              parseInt(dateRange.start.split('-')[1])
+                            }
                             label="Mes"
                             onChange={handleRangeChange}
                             name="monthStart"
@@ -103,35 +137,35 @@ export default function Options() {
                   </FormControl>
       
                   <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="demo-select-small-label">Año</InputLabel>
+                  <InputLabel id="select-start-year">Año</InputLabel>
                       <Select
-                          labelId="demo-select-small-label"
-                          id="demo-select-small"
-                          value="10"
+                          labelId="select-start-year-label"
+                          id="select-start-year"
+                          value={parseInt(dateRange.start.split('-')[0])}
                           label="Ano"
                           onChange={handleRangeChange}
                           name="yearStart"
                       >   
                       {
                           years.map(item => (
-                              <MenuItem value={item.id}>{item.year}</MenuItem>    
+                              <MenuItem value={item.year}>{item.year}</MenuItem>    
                           ))
                       }                    
                       </Select>
                   </FormControl>        
                   
                   <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="demo-select-small-label">Mes</InputLabel>
+                  <InputLabel id="select-last-month">Mes</InputLabel>
                       <Select
-                          labelId="demo-select-small-label"
-                          id="demo-select-small"
-                          value="10"
+                          labelId="select-last-month-label"
+                          id="select-last-month"
+                          value={parseInt(dateRange.end.split('-')[1])}
                           label="Mes"
                           onChange={handleRangeChange}
                           name="monthEnd"
                       >   
                       {
-                          years.map(item => (
+                          months.map(item => (
                               <MenuItem value={item.id}>{item.month}</MenuItem>    
                           ))
                       }                    
@@ -139,18 +173,18 @@ export default function Options() {
                   </FormControl>
       
                   <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="demo-select-small-label">Año</InputLabel>
+                  <InputLabel id="select-last-year">Año</InputLabel>
                       <Select
-                          labelId="demo-select-small-label"
-                          id="demo-select-small"
-                          value="10"
+                          labelId="select-last-year-label"
+                          id="select-last-year"
+                          value={parseInt(dateRange.end.split('-')[0])}
                           label="Ano"
                           onChange={handleRangeChange}
                           name="yearEnd"
                       >   
                       {
                           years.map(item => (
-                              <MenuItem value={item.id}>{item.year}</MenuItem>    
+                              <MenuItem value={item.year}>{item.year}</MenuItem>    
                           ))
                       }                    
                       </Select>
