@@ -9,6 +9,7 @@ Stack :
 Instrucciónes de instalación
 
 - Descargar Repositorio
+- composer install
 - npm install
 - php artisan migrate:fresh
 - Correr php artisan serve para inicializar back-end
