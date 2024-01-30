@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('valor_dolars', function (Blueprint $table) {
+        Schema::create('dollar_values', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->float('value')->nullable();
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('valor_dolars');
+        Schema::dropIfExists('dollar_values');
     }
 };

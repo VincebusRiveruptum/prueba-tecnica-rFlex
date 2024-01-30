@@ -16,10 +16,13 @@ import ReactDOM from 'react-dom/client';
 import Dashboard from './components/dashboard/Dashboard';
 import { Provider } from 'react-redux';
 import { store } from "./store/store"
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 ReactDOM.createRoot(document.getElementById('app')).render(     
-    <Provider store={store}>
-        <Dashboard/>        
-
-    </Provider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Provider store={store}>
+            <Dashboard/>        
+        </Provider>
+    </LocalizationProvider>
 );

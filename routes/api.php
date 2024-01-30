@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ValorDolarController;
-use App\Models\valorDolarModel;
+use App\Http\Controllers\DollarValuesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // No version control due to it's just a technical test for my job interview
-Route::get('valorDolar/{startDate}/{endDate}', [ValorDolarController::class, 'index']);
+Route::get('dollarValue/{startDate}/{endDate}', [DollarValuesController::class, 'index']);

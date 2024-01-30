@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import dolarSlice from "./dolarValues/dolarSlice";
+import dollarSlice from "./dollarValues/dollarSlice";
 import dateRangeSlice from "./dateRange/dateRangeSlice";
 
 export const store = configureStore({
     reducer:{
-       dolarValues:dolarSlice,
+       dollarValues:dollarSlice,
        dateRange:dateRangeSlice
     }
     },

@@ -5,26 +5,28 @@ import { ChartsTextStyle } from '@mui/x-charts/ChartsText';
 import Title from './Title';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export default function Chart() {  
-  const dolarValues = useSelector(state => state.dolarValues);    
+  const dollarValues = useSelector(state => state.dollarValues);    
   const theme = useTheme();
   const dispatcher = useDispatch();
 
-  const handleChange = (event: SelectChangeEvent) => {
-    //setAge(event.target.value as string);
-  };
 
-  let dolarData = dolarValues.map((item) => {
-    return { value: item.value, date: item.date,};
+  let previousValue = null;
+
+  let dollarData = dollarValues.map((item) => {
+    // Check if the current item's value is null
+    if (item.value === null) {
+      // Use the previous value if the current value is null
+      return { value: previousValue, date: item.date };
+    }
+  
+    // Update the previousValue variable for the next iteration
+    previousValue = item.value;
+  
+    // Use the current item's value if it's not null
+    return { value: item.value, date: item.date };
   });
 
   
@@ -32,12 +34,12 @@ export default function Chart() {
     <React.Fragment>
       <Title>Gráfico</Title>
 
-      { dolarValues ?
+      { dollarValues ?
       
       <div style={{ width: '100%', flexGrow: 1, overflow: 'hidden' }}>
         
         <LineChart
-          dataset={dolarData}
+          dataset={dollarData}
           margin={{
             top: 16,
             right: 20,

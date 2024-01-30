@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use App\Http\Controllers\ValorDolarController;
+use App\Http\Controllers\DollarValuesController;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
-            $dolarValue = new ValorDolarController();
-            $dolarValue->updateData();
+            $dollarValues = new DollarValuesController();
+            $dollarValues->updateData();
         })->hourly();
     }
 

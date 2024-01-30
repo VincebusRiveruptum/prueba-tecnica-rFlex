@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import Chart from './ValuesChart';
-import Orders from './DolarValuesTable';
+import Orders from './DollarValuesTable';
 import Options from './Options';
 
 import {  useSelector, useDispatch } from 'react-redux';
@@ -107,7 +107,7 @@ export default function Dashboard() {
                       p: 2,
                       display: 'flex',
                       flexDirection: 'column',
-                      height: 240,
+                      height: 150,
                     }}
                   >
                     <Options />
