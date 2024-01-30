@@ -20,7 +20,7 @@ class DollarValuesProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $dolarValues = new DollarValuesController();
-        $dolarValues->getData();
+
     }
+    
 }
